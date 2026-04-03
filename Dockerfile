@@ -1,8 +1,5 @@
-FROM debian:trixie-slim as builder
+FROM debian:trixie-slim AS builder
 
-# alsa-utils \
-# libasound2-plugin-equal \
-# gettext \
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \
     curl \
@@ -14,11 +11,11 @@ RUN apt-get update \
   && apt-get update \
   && apt-get -y --no-install-recommends install raspotify
 
-  FROM debian:trixie-slim
+FROM debian:trixie-slim
 
-  COPY --from=builder /etc/raspotify /etc/raspotify
-  COPY --from=builder /usr/bin/librespot /usr/bin/librespot
-  COPY --from=builder /usr/share/doc/raspotify /usr/share/doc/raspotify
+COPY --from=builder /etc/raspotify /etc/raspotify
+COPY --from=builder /usr/bin/librespot /usr/bin/librespot
+COPY --from=builder /usr/share/doc/raspotify /usr/share/doc/raspotify
 
 RUN apt-get update \
   && apt-get --no-install-recommends -y install \
