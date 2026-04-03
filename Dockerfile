@@ -2,6 +2,7 @@ FROM debian:trixie-slim AS builder
 
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \
+    ca-certificates \
     curl \
     apt-transport-https \
   && update-ca-certificates --fresh \
