@@ -18,4 +18,4 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-CMD ["/usr/bin/librespot"]
+ENTRYPOINT ["/usr/bin/librespot"]
